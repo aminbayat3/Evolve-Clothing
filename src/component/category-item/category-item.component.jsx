@@ -3,7 +3,7 @@ import "./category-item.styles.scss";
 const CategoryItem = ({ category }) => {
   const { title, imageUrl, size } = category;
   return (
-    <div className={`${size ? 'large' : ''} category-item`}>
+    <div className={`${size ? "large" : ""} category-item`}>
       <div
         className="background-image"
         style={{
@@ -11,8 +11,8 @@ const CategoryItem = ({ category }) => {
         }}
       />
       <div className="category-body-container">
-          <h2>{title}</h2>
-          <p>Shop Now</p>
+        <h1 className="title">{title.toUpperCase()}</h1>
+        <span className="subtitle">SHOP NOW</span>
       </div>
     </div>
   );
