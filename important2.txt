@@ -1,0 +1,96 @@
+npx create-react-app my-app --template cra-template-pwa
+
+npm install node sass 
+
+npm install react@17.0.0 react-dom@17.0.0
+
+npm install firebase@9.0.0
+
+npm install react-router-dom@5.0.0 //new react-router-dom@6
+
+npm install redux react-redux redux-logger
+
+npm install reselect
+
+npm install redux-persist
+
+npm install react-stripe-checkout
+
+*************************************************************************
+git commit --amend -m "New commit message"
+git push --force <remoteName> <branchName> ( remoteName is origin by default and branchName by default is master)
+so we say: git push --force origin master
+
+*Changing the message of older or multiple commit messages
+
+Displays a list of the last 3 commits on the current branch
+ git rebase -i HEAD~3
+
+pick e499d89 Delete CNAME
+reword 0c39034 Better README
+reword f7fde4a Change the commit message but push the same commit.
+ hit Esc and then wq to save and exit in git ( actually we need to type this: :x to save and exit) 
+
+git push --force origin example-branch
+
+git rebase --abort
+
+********************************************************************************
+
+Temporarily switch to a different commit
+If you want to temporarily go back to it, fool around, then come back to where you are, all you have to do is check out the desired commit:
+
+# This will detach your HEAD, that is, leave you with no branch checked out:
+git checkout 0d1d7fc32
+
+Or if you want to make commits while you're there, go ahead and make a new branch while you're at it:
+
+git checkout -b old-state 0d1d7fc32
+To go back to where you were, just check out the branch you were on again. (If you've made changes, as always when switching branches, you'll have to deal with them as appropriate. 
+You could reset to throw them away; you could stash, checkout, stash pop to take them with you; you could commit them to a branch there if you want a branch there.)
+
+****************
+git log --oneline to get a brief history of your commits
+git log    to get a detailed history of your commits
+tap q to exit from git log
+
+**********************************
+You can go through your commit history on your GitHub repo via the GitHub website
+This allows you to check the state of all the files in the repo at each commit to make sure you are going back to the correct version.
+This is useful if you didn’t give yourself useful commit messages, or you’re just not sure exactly which version you need to go back to
+********************
+Add this version to the staging area and push to remote
+In the same way that you would with any normal commit, you have to add all files and push to remote to save this state.
+
+$ git add .
+$ git commit -m "Reverting to <commit-id>"
+$ git push
+
+
+******************************** important NetNinjs
+git checkout ID
+
+we just detach from master branch we went to a different commit(Head)
+so in order to get back again we just need to say git checkout master
+
+git checkout master
+
+**********************************PUSHING MY FIRST PROJECT
+1-Create a new repository
+2-copying the SSH Url 
+3- back to the terminal in your project and write : git init
+4- git branch -M main
+5- git remote add origin (the copied SSH Url)
+6- git status
+7-git add .
+8- git commit -m ""
+9- git push origin main
+**************************************CLONE A PROJECT FROM GitHub
+$ git clone ssh://git@bitbucket.org:teamsinspace/documentation-tests.git
+
+********************************************************
+git stash --include-untracked
+git reset --hard
+git clean -fd
+git checkout master
+

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -6,7 +6,8 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
-import Button from '../button/button.component';
+import Button from "../button/button.component";
+import { UserContext } from "../../contexts/user.context";
 
 import "./sign-up-form.styles.scss";
 
@@ -21,6 +22,8 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const  { setCurrentUser } = useContext(UserContext);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -29,19 +32,19 @@ const SignUpForm = () => {
       return;
     }
 
-    // const resetFormFields = () => {
-    //   setFormFields(defaultFormFields);
-    // };
+    const resetFormFields = () => {
+      setFormFields(defaultFormFields);
+    };
 
     try {
       const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
-
+       setCurrentUser(user);
       await createUserDocumentFromAuth(user, { displayName });
 
-      setFormFields(defaultFormFields);
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");
@@ -55,11 +58,12 @@ const SignUpForm = () => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
+  // from the begining to this point everything gets re-rendered but React is smart enought to deal with Dom or after this point.
   return (
     <div className="sign-up-container">
       <h2>Don't have an account</h2>
       <span>Sign up with your email and password</span>
-      
+
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Display Name"
