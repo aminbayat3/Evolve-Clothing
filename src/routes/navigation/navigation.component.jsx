@@ -3,19 +3,19 @@ import { Link, Outlet } from "react-router-dom";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { UserContext } from "../../contexts/user.context";
+import { CartContext } from "../../contexts/cart-context";
+
+import CartIcon from '../../component/cart-icon/cart-icon.component';
+import CartDropdown from "../../component/cart-dropdown/cart-dropdown.component";
 
 import { ReactComponent as Logo } from "../../assets/Evolve-Clothing.svg";
 import "./navigation.styles.scss";
 
 //Fragments let you group a list of children without adding extra nodes to the DOM. if i used a div instead of Fragment that div would be redundent.
 const Navigation = () => {
-  console.log("navigation");
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
+  const { isCartOpen } = useContext(CartContext);
 
-  const signOutHandler = async () => {
-    await signOutUser;
-    setCurrentUser(null);
-  }
   return (
     <Fragment>
       <div className="navigation">
@@ -27,7 +27,7 @@ const Navigation = () => {
             SHOP
           </Link>
           {currentUser ? (
-            <div className="nav-link" onClick={signOutHandler}>
+            <div className="nav-link" onClick={signOutUser}>
               SIGN OUT
             </div>
           ) : (
@@ -35,8 +35,14 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
         </div>
       </div>
+      {
+        // isCartOpen ? (<CartDropdown />) : null
+        isCartOpen && <CartDropdown />  //short circuit operator(&& , ||) && => double ampersand // components are always truthy values because they are functions// so the short circuit operator says if this total thing (the whole code inside of the curly braces) evaluates to true, then what im gonna return to you is going to be the last thing you gave me.
+      } 
+      
       <Outlet />
     </Fragment>
   );

@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  onAuthStateChanged                    //Observable listener
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -71,3 +72,13 @@ export const signInAuthUserWithEmailAndPassword = async(email, password) => {
 export const signOutUser = async () => {
   return await signOut(auth);
 }
+
+export const onAuthStateChangedListener = (callback) => {
+  return onAuthStateChanged(auth, callback);  //an open listener like someone who is standing there and trying to listen for changes so when the component unmounts we need to tell it stop listening
+} 
+ // onAuthStateChanged(auth, callback, errorCallback, completedCallback)
+// completedCallback => is when the listener completed
+
+// next : callback
+// error: errorCallback
+//complete: completedCallback
