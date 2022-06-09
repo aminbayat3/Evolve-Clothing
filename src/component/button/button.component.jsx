@@ -8,7 +8,7 @@ const BUTTON_TYPE_CLASSES = {
 const Button = ({ children, buttonType, onHandleClick, ...otherProps }) => {
   return (
     <button
-      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`} onClick={onHandleClick ? onHandleClick : null}
+      className={`button-container ${BUTTON_TYPE_CLASSES[buttonType]}`} onClick={onHandleClick && onHandleClick}
       {...otherProps}
     >
       {children}

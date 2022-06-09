@@ -33,3 +33,9 @@ export default Navigation;
 //short circuit operator(&& , ||) && => double ampersand // components are always truthy values because they are functions//
  so the short circuit operator says if this total thing (the whole code inside of the curly braces) evaluates to true, then what im gonna return to you is going to be the last thing you gave me.
 
+ ////////////////////////////////////
+
+ import { useNavigate } from 'react-router-dom'; instead of withRouter
+
+const navigate = useNavigate();
+//////////////////////////////////////////////
