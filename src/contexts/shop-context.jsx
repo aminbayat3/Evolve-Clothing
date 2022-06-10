@@ -1,19 +1,32 @@
 import { createContext, useState, useEffect } from "react";
 
-import { addCollectionAndDocuments } from "../utils/firebase/firebase.utils.js";
-
-// import SHOP_DATA from "../shop-data.js"; // we only need it one time
+import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils.js";
 
 export const ProductContext = createContext({
-  products: [],
+  products: {},
 });
 
 export const ProductsProvider = ({ children }) => {
-  const [products] = useState([]);
+  const [products, setProducts] = useState({});
 
-  // useEffect(() => {  // we need to do it only one time
-  //   addCollectionAndDocuments('categories', SHOP_DATA);
-  // }, []);
+  useEffect(() => {
+    let mounted = true;
+    try {
+      (async () => {
+        const categoryMap = await getCategoriesAndDocuments();
+        if (mounted) {
+          setProducts(categoryMap);
+        }
+      })();
+    } catch (error) {
+      console.log("error occured!", error.message);
+    }
+    return () => (mounted = false);
+  }, []);
 
-  return <ProductContext.Provider value={products}>{children}</ProductContext.Provider>;
+  const value = { products };
+
+  return (
+    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
+  );
 };
