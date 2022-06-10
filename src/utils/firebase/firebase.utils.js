@@ -10,7 +10,7 @@ import {
   onAuthStateChanged                    //Observable listener
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD-82rpgW4W8hK6kpkZHPIhtaausTwi0As",
@@ -34,6 +34,19 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd, field = 'title') => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object[field].toLowerCase()); //object.title.toLowerCase() we did that because we wanted our code to be generic.
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log('done');
+}
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if(!userAuth) return;
