@@ -4,6 +4,7 @@ import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils.js";
 
 export const ProductContext = createContext({
   products: {},
+  selectItems: () => {},
 });
 
 export const ProductsProvider = ({ children }) => {
@@ -24,9 +25,14 @@ export const ProductsProvider = ({ children }) => {
     return () => (mounted = false);
   }, []);
 
-  const value = { products };
+  const selectItems = (productId) => {
+    return products[productId];
+  }
+
+  const value = { products, selectItems };
 
   return (
     <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
   );
 };
+ //shop-context first gets rendered without calling the useEffect. as a result, all of those components that are using value object get rendered  the first time that's why we first get undefined for products variable in the products-overview compoenent or other components that use this variable, then we get the whole products after calling the useEffect( remember the useEffect gets called after the return)
