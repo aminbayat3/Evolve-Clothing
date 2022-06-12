@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 
 import ProductsOverview from '../../component/products-overview/products-overview.component';
-import ProductPage from '../product/product.component';
+import CategoryPage from '../category/category.component';
 
 const Shop = () => {
   return(
     <Routes>
       <Route exact index element={<ProductsOverview />} />
-      <Route index path="/:productId" element={<ProductPage />} />
+      <Route path="/:categoryId" element={<CategoryPage />} />
     </Routes>
   )
 };

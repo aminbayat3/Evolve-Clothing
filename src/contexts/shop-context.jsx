@@ -3,12 +3,12 @@ import { createContext, useState, useEffect } from "react";
 import { getCategoriesAndDocuments } from "../utils/firebase/firebase.utils.js";
 
 export const ProductContext = createContext({
-  products: {},
+  categoriesMap: {},
   selectItems: () => {},
 });
 
 export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState({});
+  const [categoriesMap, setCategoriesMap] = useState({});
 
   useEffect(() => {
     let mounted = true;
@@ -16,7 +16,7 @@ export const ProductsProvider = ({ children }) => {
       (async () => {
         const categoryMap = await getCategoriesAndDocuments();
         if (mounted) {
-          setProducts(categoryMap);
+          setCategoriesMap(categoryMap);
         }
       })();
     } catch (error) {
@@ -25,11 +25,11 @@ export const ProductsProvider = ({ children }) => {
     return () => (mounted = false);
   }, []);
 
-  const selectItems = (productId) => {
-    return products[productId];
-  }
+  // const selectItems = (categoryId) => {
+  //   return categoriesMap[categoryId];
+  // }
 
-  const value = { products, selectItems };
+  const value = { categoriesMap };
 
   return (
     <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
