@@ -25,6 +25,10 @@ export const ProductsProvider = ({ children }) => {
     return () => (mounted = false);
   }, []);
 
+  // const selectItems = (categoryId) => {
+  //   return categoriesMap[categoryId];
+  // }, [categoryId, categoriesMap]);
+
   const value = { categoriesMap };
 
   return (
