@@ -1,41 +1,58 @@
-import { useContext } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { CartContext } from "../../contexts/cart-context";
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 
-import "./cart-dropdown.styles.scss";
+import {
+  CartDropdownContainer,
+  EmptyMessage,
+  CartItems,
+  InitialCartItems,
+} from "./cart-dropdown.styles";
+
+// const getOverflow = (state = 'scroll') => {
+//   return {
+//     scroll: CartItems,
+//     initial: InitialCartItems,
+//   }[state]
+// }
+
+// let CustomCartItems = InitialCartItems;
 
 const CartDropdown = () => {
   const { setIsCartOpen, cartItems } = useContext(CartContext);
   const navigate = useNavigate();
 
-  const cartItemsLength = cartItems.length;
+  // useEffect(() => {
+  //   console.log('useEffect')
+  //   const state = cartItems.length > 2 ? ('scroll') : ('initial');
+  //   CustomCartItems = getOverflow(state);
+  // }, [cartItems]);
 
   const goToCheckoutHandler = () => {
-    navigate('/checkout');
-    setIsCartOpen(prevIsCartOpen => !prevIsCartOpen);
-  }
+    navigate("/checkout");
+    setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
+  };
 
-
-  
   return (
-    <div className="cart-dropdown-container">
-      <div
-        className="cart-items"
-        style={cartItemsLength > 2 ? null : { overflowY: "initial" }}
-      >
-        {cartItemsLength ? (
+    <CartDropdownContainer>
+      {/* <CustomCartItems> */}
+      <CartItems scroll={cartItems.length > 2}>
+        {cartItems.length ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))
         ) : (
-          <span className="empty-message">Your cart is empty</span>
+          <EmptyMessage>Your cart is empty</EmptyMessage>
         )}
-      </div>
-      <Button type="button" onHandleClick={goToCheckoutHandler}>GO TO CHECKOUT</Button>
-    </div>
+      </CartItems>
+      {/* </CustomCartItems> */}
+      <Button type="button" onHandleClick={goToCheckoutHandler}>
+        GO TO CHECKOUT
+      </Button>
+    </CartDropdownContainer>
   );
 };
 

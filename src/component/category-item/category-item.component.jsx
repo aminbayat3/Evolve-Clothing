@@ -1,20 +1,34 @@
-import "./category-item.styles.scss";
+import { useNavigate } from 'react-router-dom';
+
+import {
+  BackgroundImage,
+  Body,
+  CategoryItemContainer,
+  LargeCategoryItemContainer,
+} from "./category-item.styles";
+
+// let CustomCategoryItem = CategoryItemContainer;
 
 const CategoryItem = ({ category }) => {
-  const { title, imageUrl, size } = category;
+  const { title, imageUrl, size, route} = category;
+  const navigate = useNavigate();
+
+  const onNavigateHandler = () => navigate(route);
+
+  // CustomCategoryItem = size
+  //   ? LargeCategoryItemContainer
+  //   : CategoryItemContainer;
+
   return (
-    <div className={`${size ? "large" : ""} category-item`}>
-      <div
-        className="background-image"
-        style={{
-          backgroundImage: `url(${imageUrl})`,
-        }}
-      />
-      <div className="category-body-container">
-        <h1 className="title">{title.toUpperCase()}</h1>
-        <span className="subtitle">SHOP NOW</span>
-      </div>
-    </div>
+    // <CustomCategoryItem>
+    <CategoryItemContainer size={size} onClick={onNavigateHandler}> 
+      <BackgroundImage imageUrl={imageUrl} />
+      <Body>
+        <h1>{title.toUpperCase()}</h1>
+        <span>SHOP NOW</span>
+      </Body>
+      </CategoryItemContainer>
+      // <CustomCategoryItem>
   );
 };
 

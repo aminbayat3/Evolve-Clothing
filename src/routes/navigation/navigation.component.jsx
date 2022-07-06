@@ -40,6 +40,7 @@ const Navigation = () => {
       {
         // isCartOpen ? (<CartDropdown />) : null
         isCartOpen && <CartDropdown /> //short circuit operator(&& , ||) && => double ampersand // components are always truthy values because they are functions// so the short circuit operator says if this total thing (the whole code inside of the curly braces) evaluates to true, then what im gonna return to you is going to be the last thing you gave me.
+        // notice that this CartDropdown component is getting mounted and unmounted based on isCartOpen so that's why useEffect gets called everytime
       }
 
       <Outlet />
