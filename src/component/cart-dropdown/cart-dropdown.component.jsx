@@ -22,7 +22,7 @@ import {
 // let CustomCartItems = InitialCartItems;
 
 const CartDropdown = () => {
-  const { setIsCartOpen, cartItems } = useContext(CartContext);
+  const { setIsCartOpen, cartItems, isCartOpen } = useContext(CartContext);
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -33,7 +33,8 @@ const CartDropdown = () => {
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
-    setIsCartOpen((prevIsCartOpen) => !prevIsCartOpen);
+    // setIsCartOpen(!isCartOpen);
+    setIsCartOpen();
   };
 
   return (

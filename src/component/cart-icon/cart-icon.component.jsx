@@ -5,10 +5,12 @@ import { CartContext } from '../../contexts/cart-context';
 import { CartIconContainer, ShoppingIcon, ItemCount } from './cart-icon.styles';
 
 const CartIcon = () => {
-    const { setIsCartOpen, cartCount } = useContext(CartContext);
+    const { setIsCartOpen, isCartOpen, cartCount } = useContext(CartContext);
     
     const toggleCart = () => {
-        setIsCartOpen(prevIsCartOpen => !prevIsCartOpen);
+        setIsCartOpen();
+        // setIsCartOpen(!isCartOpen);
+        // setIsCartOpen(prevIsCartOpen => !prevIsCartOpen); // when we used useState
     }
     return(
         <CartIconContainer onClick={toggleCart}>
