@@ -39,3 +39,13 @@ export default Navigation;
 
 const navigate = useNavigate();
 //////////////////////////////////////////////
+
+**********************************************
+** IMPORTANT POINT FOR PREVENTING UNNECESSARY RENDERS IN OUR APPLICATION
+  const categoriesMap = useSelector(selectCategoriesMap); // this useSelector will run every time the state object in root reducer has updated(whether it is currentUser or categories) and it only force the component to re-render if the return of the selector function you pass to it is different,
+ and given the fact that the selector always return a new object it will lead to unnecssary re-renders. 
+ the solution is to make the selector function runs only when the categories changes. and this is viable via using a library called Reselect. 
+
+ **************************************************
+
+ import { createSelector } from 'reselect'; // this makes our selector, a memoized one. a memoization is the process in which you cache the previous value of something so that if the input has not changed then you just return back the same output

@@ -53,12 +53,14 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoryMap;
+  // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {IMPORTANT**:  this logic should be in a selector when we're using a Redux. this way we have access to the whole data and then we modify it in a selector based on what we need.
+  //   const { title, items } = docSnapshot.data();
+  //   acc[title.toLowerCase()] = items;
+  //   return acc;
+  // }, {});
+  // return categoryMap;
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
+
 }
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
