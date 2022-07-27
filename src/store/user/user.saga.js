@@ -12,7 +12,7 @@ export function* isUserAuthenticated() {
         const userAuth = yield call(getCurrentUser);
         if(!userAuth) return;
         
-    } catch(error) {
+    } catch(eor) {
         console.log(error);
     }
 }

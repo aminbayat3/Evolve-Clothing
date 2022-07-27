@@ -23,7 +23,7 @@ const App = () => {
   const dispatch = useDispatch(); // notice that we're using this dispatch inside of the useEffect and the dispatch itself is initialized outside, so react will give us a warning to use dispatch as a dependency althogh this dispatch never updates, so in general we can also ignore it and leave the dependency array empty
 
   useEffect(() => {
-    getCurrentUser().then((user) => console.log(user));
+    getCurrentUser();
     // const unsubscribe = onAuthStateChangedListener(async (user) => {  // if we didn't have an observable for authentication, we should use promise base code(saga)
     //   if (user) {
     //     const userDocRef = await createUserDocumentFromAuth(user);
