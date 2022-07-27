@@ -49,3 +49,37 @@ const navigate = useNavigate();
  **************************************************
 
  import { createSelector } from 'reselect'; // this makes our selector, a memoized one. a memoization is the process in which you cache the previous value of something so that if the input has not changed then you just return back the same output
+
+ *****************************************************
+Boolean(10) is true
+Boolean("GeeksforGeeks") is true
+Boolean(2.74) is true
+Boolean(-1) is true
+Boolean('true') is true
+Boolean('false') is true
+Boolean(3 * 2 + 1.11) is true
+Boolean(1<2) is true
+************************************
+Boolean(0) is false
+Boolean("") is false
+Boolean(e) undefined is false
+Boolean(-0) is false
+Boolean(false) is false
+Boolean(NaN) is false
+Boolean(null) is false
+Boolean(1>2) is false
+******************************************
+NODE_ENV as performance booster: One of the simplest things we can do to improve performance is to set NODE_ENV to “production”. 
+
+Setting NODE_ENV to “production” makes Express:
+
+Cache view templates.
+Cache CSS files generated from CSS extensions.
+Generate less verbose error messages.
+
+process.env.NODE_ENV is either devlopment or production //
+const middleWares = [process.env.NODE_ENV === 'devlopment' && logger].filter((x) => Boolean(x)) we use this filter to filter out any false value that gets returned if it was on the production mode because we can't pass false as our middleWares array
+
+for example: 
+2 === 3 && { a: 'string' } // this will give us back false value
+[2 === 3 && { a: 'string' }].filter(Boolean); // it's gonna give us back an empty array because that Boolean function gets rid of all the falsy values

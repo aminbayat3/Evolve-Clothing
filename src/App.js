@@ -8,6 +8,7 @@ import { getDoc } from "firebase/firestore";
 import {
   createUserDocumentFromAuth,
   onAuthStateChangedListener,
+  getCurrentUser,
 } from "./utils/firebase/firebase.utils";
 import Navigation from "./routes/navigation/navigation.component";
 import HomePage from "./routes/homepage/homepage.component";
@@ -22,22 +23,23 @@ const App = () => {
   const dispatch = useDispatch(); // notice that we're using this dispatch inside of the useEffect and the dispatch itself is initialized outside, so react will give us a warning to use dispatch as a dependency althogh this dispatch never updates, so in general we can also ignore it and leave the dependency array empty
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener(async (user) => {
-      if (user) {
-        const userDocRef = await createUserDocumentFromAuth(user);
-        const userSnapshot = await getDoc(userDocRef);
+    getCurrentUser().then((user) => console.log(user));
+    // const unsubscribe = onAuthStateChangedListener(async (user) => {  // if we didn't have an observable for authentication, we should use promise base code(saga)
+    //   if (user) {
+    //     const userDocRef = await createUserDocumentFromAuth(user);
+    //     const userSnapshot = await getDoc(userDocRef);
 
-        dispatch(setCurrentUser({
-          id: userSnapshot.id,
-          ...userSnapshot.data(),
-        }));
-      } else {
-        dispatch(setCurrentUser(user)); // it will passes the action to every single reducer and that is its difference with context
-      }
-    });
+    //     dispatch(setCurrentUser({
+    //       id: userSnapshot.id,
+    //       ...userSnapshot.data(),
+    //     }));
+    //   } else {
+    //     dispatch(setCurrentUser(user)); // it will passes the action to every single reducer and that is its difference with context
+    //   }
+    // });
 
-    return () => unsubscribe();
-  }, [dispatch]);
+    // return () => unsubscribe();
+  }, []);
 
   return (
     <div className="App">

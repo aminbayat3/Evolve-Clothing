@@ -52,6 +52,7 @@ export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, 'categories');
   const q = query(collectionRef);
 
+  // await Promise.reject(new Error('new error woops!'))
   const querySnapshot = await getDocs(q);
   // const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {IMPORTANT**:  this logic should be in a selector when we're using a Redux. this way we have access to the whole data and then we modify it in a selector based on what we need.
   //   const { title, items } = docSnapshot.data();
@@ -110,3 +111,16 @@ export const onAuthStateChangedListener = (callback) => {
 // next : callback
 // error: errorCallback
 //complete: completedCallback
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth); // this listener is asynchronous so we're gonna resolve the moment we get the the userAuth anyway
+      },
+      reject
+    ) //we dont want this listener just stay active, so we wanna unsubscribe the moment we get a value. if we dont do this there will be a memory leak
+  })
+}

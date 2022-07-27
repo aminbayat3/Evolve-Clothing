@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
-export const ProductPage = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  h2 {
-    font-size: 38px;
-    margin: 0 auto 30px;
-  }
+export const Title = styled.h2`
+  font-size: 38px;
+  margin: 0 auto 30px;
+  text-align: center;
 `;
 
 export const Items = styled.div`

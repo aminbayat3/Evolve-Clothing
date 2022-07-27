@@ -1,24 +1,43 @@
-import { compose, createStore, applyMiddleware } from 'redux';
-// import logger from 'redux-logger';
+import { compose, createStore, applyMiddleware } from "redux"; // in order for us to use ReduxDevTools is to modify compose method. you modify it in the sense that you determine whether you wanna use Redux's Compose or the DevTools's compose
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import logger from "redux-logger";
+import createSagaMiddleware from 'redux-saga';
 
-import { rootReducer } from './root-reducer';
+import { rootSaga } from './root-saga';
 
-const loggerMiddleware = (store) => (next) => (action) => {  //Display a loader icon when your actions make request to your backend to process data and clear the loader icon when data gets to your reducers. we can do this with middleware
-    if(!action.type) { 
-        return next(action);
-    }
+import { rootReducer } from "./root-reducer";
 
-    console.log('tyep', action.type);
-    console.log('payload', action.payload);
-    console.log('currentState', store.getState());
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["cart"],
+  //blacklist: ['user']
+};
 
-    next(action); //synchronous function that's why we can get the next state after this
+const sagaMiddleware = createSagaMiddleware();
 
-    console.log('next state', store.getState());
-}
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const middleWares = [loggerMiddleware];
+const middleWares = [
+  process.env.NODE_ENV !== "production" && logger,
+  sagaMiddleware,
+].filter(Boolean); //fliter((x) => Boolean(x));
 
-const compoesedEnhancers = compose(applyMiddleware(...middleWares))
+const compoesedEnhancer =
+  (process.env.NODE_ENV !== "production" &&
+    window &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose; // becuase during our build step we dont have any window object so for this reason we dont wanna break our code
 
-export const store = createStore(rootReducer, undefined, compoesedEnhancers); // the second argument is : if you wanna add any additional default state here
+const compoesedEnhancers = compoesedEnhancer(applyMiddleware(...middleWares));
+
+export const store = createStore(
+  persistedReducer,
+  undefined,
+  compoesedEnhancers
+); // the second argument is : if you wanna add any additional default state here
+
+sagaMiddleware.run(rootSaga);
+
+export const persistor = persistStore(store);

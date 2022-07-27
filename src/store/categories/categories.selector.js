@@ -11,13 +11,17 @@ export const selectCategories = createSelector(
 export const selectCategoriesMap = createSelector( // so we're saying here that : as long as the categories arrray does not change do not re-run this method(dont even bother rerunning it)
   [selectCategories],
   (categories) => {
-    console.log('selector fired!');
     return categories.reduce((acc, category) => {
       const { title, items } = category;
       acc[title.toLowerCase()] = items;
       return acc;
     }, {})
   }
+);
+
+export const selectCategoriesIsLoading = createSelector(
+  [selectCategoryReducer],
+  (categories) => categories.isLoading
 );
 
 // export const selectCategories = createSelector(
