@@ -83,3 +83,21 @@ const middleWares = [process.env.NODE_ENV === 'devlopment' && logger].filter((x)
 for example: 
 2 === 3 && { a: 'string' } // this will give us back false value
 [2 === 3 && { a: 'string' }].filter(Boolean); // it's gonna give us back an empty array because that Boolean function gets rid of all the falsy values
+
+***********************************************************
+call effect(saga): anywhere you're going to call a function, you want to use the call effect generator
+now inside of redux saga every single step that yields you want to be as descriptive as possible
+now descriptive here essentially means creating an effect for it that's why these are called effect generators
+an effect is essentially a plain object that describes what's trying to happen, so here with call
+this is just gonna say: hey i've got some object where the function name is going to be "createUserDocumentFromAuth"(eg) and then it's gonna say
+the params are .... just like this : => 
+{ 
+    fn: createUserDocumentFromAuth,
+    params: [],
+}
+this plain object above is an effect. ( this might not be the shape, but this just gives you an idea)
+
+why is it useful ::: what this allows us to do is actually makes testing easier when we're going to test sagas, but 
+also we're just essentially handing over the execution of this API call or any of this code to our actual generator
+and you want to hand over as much of the generator as you can because the generator is gonna be the one that cancel these.
+*****************************************************************

@@ -1,6 +1,6 @@
 npx create-react-app my-app --template cra-template-pwa
 
-npm install node sass 
+npm install node sass  // instead => npm i sass --save-dev
 
 npm install react@17.0.0 react-dom@17.0.0
 
@@ -93,4 +93,6 @@ git stash --include-untracked
 git reset --hard
 git clean -fd
 git checkout master
+
+
 
