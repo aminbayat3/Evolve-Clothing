@@ -110,3 +110,9 @@ this function inside of the functions in which cartItems get changed(like addIte
 total and count in reducers itself cause our code would get messy.we also have different actions for add and remove and clear, but they are all has the SETCARTITEMS Type(event); so we can handle them in one case in cartReducer
 3-the third way is by redux which we also encounter two ways of handling the states: first way is to have a selector for Total and Count so
 they are not a state. whenever the cartItems get changed, these selectors get updated as well.again we will have different actions for add, remove and clear but the type of theier event is the same (SET-CART-ITEMS);
+***********************************************************
+remember with context we wanna handle the onAuthStateChanged inside of our userContext but 
+in case of redux we wanna do this inside of the App.js.
+we also can complete the process of authentication without using onAuthStateChanged by using setCurrentUser
+every time we do a sign in or a sign up. but it's really better to handle that with the onAuthStateChanged.
+in saga we also get the help of promise to do the check not a listener(observable). 
