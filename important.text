@@ -101,3 +101,12 @@ why is it useful ::: what this allows us to do is actually makes testing easier 
 also we're just essentially handing over the execution of this API call or any of this code to our actual generator
 and you want to hand over as much of the generator as you can because the generator is gonna be the one that cancel these.
 *****************************************************************
+There are 3 ways to handle the cart states: 1- using context alone : which we need to manage our Total and Count in a seperate useEffect
+hook with a dependency array of cartItems, so whenever the cartItems changes the total and the count will get updated as well
+2- the second way( the better way ) is to handle this with context and useReducer hook. then we can have a function instead of two useEffect
+where in this function, which gets newCartItem as an argument, we calculate the newTotal and newCount inside of it and then 
+we can dispatch an action(only one action and one type(setCartItems))with {newCartItems, newCount, newTotal} as a payload. and we call
+this function inside of the functions in which cartItems get changed(like addItem, removeItem, clearItem); we shouldn't calculate cartItems,
+total and count in reducers itself cause our code would get messy.we also have different actions for add and remove and clear, but they are all has the SETCARTITEMS Type(event); so we can handle them in one case in cartReducer
+3-the third way is by redux which we also encounter two ways of handling the states: first way is to have a selector for Total and Count so
+they are not a state. whenever the cartItems get changed, these selectors get updated as well.again we will have different actions for add, remove and clear but the type of theier event is the same (SET-CART-ITEMS);
