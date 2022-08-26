@@ -116,3 +116,20 @@ in case of redux we wanna do this inside of the App.js.
 we also can complete the process of authentication without using onAuthStateChanged by using setCurrentUser
 every time we do a sign in or a sign up. but it's really better to handle that with the onAuthStateChanged.
 in saga we also get the help of promise to do the check not a listener(observable). 
+
+******************************************************************
+if you notice, you can see that we passed a onClick props to the Button Component. actually we did that because we are spreading the otherProps in the button tag itsel.
+<Button onClick={handleClick}>Click Here</Button> and then : 
+
+const Button = ({ children, buttonType, ...otherProps }) => {
+    console.log(otherProps) //{ onClick= f}  and also for form input the otherPrps will be this:{name: '', type: 'email', value: '', onChange: f}
+  return (
+    <button
+      {...otherProps} // so when we spred the otherProps object here we are saying onClick = f 
+    >
+      {children}      
+    </button>
+  );
+};
+
+**************************************************************************
