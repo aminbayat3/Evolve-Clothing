@@ -133,3 +133,127 @@ const Button = ({ children, buttonType, ...otherProps }) => {
 };
 
 **************************************************************************
+solution number 2 regarding styled components when dealing with different buttons.
+
+const BUTTON_TYPE_CLASSES = {
+  base: BaseButton,
+  google: GoogleSignInButton,
+  inverted: InvertedButton,
+};
+
+
+const getButton = (buttonType = 'base') => {
+  return BUTTON_TYPE_CLASSES[buttonType];
+}
+
+const Button = ({ children, buttonType, ...otherProps }) => {
+  const CustomButton = getButton(buttonType);
+  return (
+      <CustomButton {...otherProps}>
+        {children}      
+      </CustomButton>
+    );
+  }
+
+  * remember this: when you have more than one button which are different only based on their color, we should use a different approach. 
+  we can only pass a prop to the buttons and based on that we style the buttons just like the code below( you get the idea) ::: 
+
+const handleColorType = color => {
+  switch (color) {
+    case "primary":
+      return "#03a9f3";
+    case "danger":
+      return "#f56342";
+    default:
+      return "#fff";
+  }
+};
+
+const Button = styled.button`
+  display: block;
+  cursor: pointer;
+  border: 0;
+  margin: 5px 0;
+  background: #000;
+  font-size: 20px;
+  color: ${({ color }) => handleColorType(color)};
+
+  &:focus {
+    outline: 0;
+  }
+`;
+
+  ********************************************************
+we can do this: usually when we need to pass an object to a component instead of only one prop : 
+const Baz = styled.div((props) => css`
+  border-radius: 50%;
+  display: flex;
+  width: ${props.size};
+  height: ${props.size};
+  color: ${props.bgColor};
+  background-color: ${props.bgColor};
+`);
+instead of doing these two: 
+Approach 1
+
+const Foo = styled.div`
+  border-radius: 50%;
+  display: flex;
+  width: ${(props) => props.size};
+  height: ${(props) => props.size};
+  color: ${(props) => props.bgColor};
+  background-color: ${(props) => props.bgColor};
+`;
+vs
+
+Approach 2
+
+const Bar = styled.div`
+  border-radius: 50%;
+  display: flex;
+  ${(props) => {
+    return css`
+      width: ${props.size};
+      height: ${props.size};
+      color: ${props.bgColor};
+      background-color: ${props.bgColor};
+    `;
+  }}
+`;
+
+**THIS IS HOW WE CAN USE MIXINS IN STYLED COMPONENTS: 
+const shrinkLabelStyles = css` 
+  top: -14px;
+  font-size: 12px;
+  color: ${mainColor};
+`;
+************************************SOME DESIGNING TIPS
+a strategy for lazy-loading:
+<img src="fake_small_image.gif" data-src="real_image.jpg">
+A common approach to lazy-loading images is to set the src to a very small image,
+sometimes a 1x1px gif, and once the user scrolls and the image is on the screen replace the src with the real one.
+
+TIPS: 
+Here’s a terrific example of eliminating friction: Since mobile user interfaces are typically harder to navigate,
+it would be best to switch to a one-page checkout for mobile eCommerce stores and only enable multi-step checkout for desktop eCommerce stores.
+
+2-People typically expect the main desktop navigation to be at the top; however, on mobile,
+ it should be at the bottom. Thumbs don’t reach the top comfortably.
+
+ 3-Other interactive elements should also be easy to reach. This means keeping them in the center of the screen
+  because it’s more difficult for thumbs to reach the sides and corners of device screens.
+
+3-So that they can be tapped with ease, 
+important links and CTAs should have a height of at least 44px (smaller tap targets are bad for usability).
+
+4- Credit/top-up card scanning (because forms are often tricky on mobile)
+Photo-sharing on social media, because the media is already on your device
+Two-factor authentication (because you’re already on your mobile device)
+Quickly checking stocks/analytics (because mobile apps simplify information)
+Performing a web search with voice (because hands-free is easier than typing)
+
+5-Keep these tips in mind when designing fluid/adaptive layouts:
+Percentage units will allow elements to be fluid.
+Setting minimum and maximum widths can enable the “but don’t go smaller/bigger than this” scenario.
+SVG image formats can be scaled up and down without losing quality, and are resolution-independent (as opposed to JPGs and PNGs, which are not).
+

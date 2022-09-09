@@ -3,13 +3,13 @@ import styled, { css } from "styled-components";
 const subColor = "grey";
 const mainColor = "black";
 
-const shrinkLableStyles = css`
+const shrinkLabelStyles = css`
   top: -14px;
   font-size: 12px;
   color: ${mainColor};
 `;
 
-export const FormInputLable = styled.label`
+export const FormInputLabel = styled.label`
   color: ${subColor};
   font-size: 16px;
   font-weight: normal;
@@ -19,7 +19,7 @@ export const FormInputLable = styled.label`
   top: 10px;
   transition: 300ms ease all;
 
-  ${({ shrink }) => shrink && shrinkLableStyles}
+  ${({ shrink }) => shrink && shrinkLabelStyles}
 `;
 
 export const Input = styled.input`
@@ -39,9 +39,9 @@ export const Input = styled.input`
     outline: none;
   }
 
-  &:focus ~ ${FormInputLable} {
+  &:focus ~ ${FormInputLabel} {
     //  ~ this is the subsequent selector so the label shoul be positioned after the input element
-    ${shrinkLableStyles}
+    ${shrinkLabelStyles}
   }
 `;
 
