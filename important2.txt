@@ -1,6 +1,6 @@
 npx create-react-app my-app --template cra-template-pwa
 
-npm install node sass  // instead => npm i sass --save-dev
+npm install node sass  // instead => npm install --save-dev sass
 
 npm install react@17.0.0 react-dom@17.0.0
 
