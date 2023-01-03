@@ -257,3 +257,8 @@ Percentage units will allow elements to be fluid.
 Setting minimum and maximum widths can enable the “but don’t go smaller/bigger than this” scenario.
 SVG image formats can be scaled up and down without losing quality, and are resolution-independent (as opposed to JPGs and PNGs, which are not).
 
+// Netlify
+npm install -g netlify-cli
+netlify(to see a list of commands)
+netlify login
+netlify dev
