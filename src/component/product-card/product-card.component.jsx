@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
   const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
 
   return (
-    <ProductCardContainer onClick={addProductToCart}>
+    <ProductCardContainer>
       <img src={imageUrl} alt={`${name}`} />
       
       <Footer>
@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
         <span className="price">${price}</span>
       </Footer>
 
-      <Button type='button' buttonType={ BUTTON_TYPE_CLASSES.inverted }>ADD TO CART</Button>
+      <Button type='button' buttonType={ BUTTON_TYPE_CLASSES.inverted } onClick={addProductToCart}>ADD TO CART</Button>
     </ProductCardContainer>
   );
 };
