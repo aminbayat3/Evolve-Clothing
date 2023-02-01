@@ -257,8 +257,153 @@ Percentage units will allow elements to be fluid.
 Setting minimum and maximum widths can enable the “but don’t go smaller/bigger than this” scenario.
 SVG image formats can be scaled up and down without losing quality, and are resolution-independent (as opposed to JPGs and PNGs, which are not).
 
-// Netlify
+// Netlify***************************************
 npm install -g netlify-cli
 netlify(to see a list of commands)
 netlify login
 netlify dev
+
+********************************************************************
+const myFunc = () => console.log('hit');
+// so if we call 
+myFunc(); //hit
+//since the function is an object we can add property to it
+myFunc.match = () => console.log('hat');
+//if we still call the myFunc
+myFunc(); // hit
+//but we also can call myFunc.match()
+myFunc.match(); // hat
+
+********************************
+// a type predicate is kind of like a function that verifies whether a specific argument that 
+// it receives is going to be a narrower type or not(narrow means more specific)
+let's say we have a type
+type Alien = {
+  fly: () => {};
+}
+
+type Human = {
+  speak: () => {}
+}
+
+function isHuman(entity: Human | Alien): entity is Human {
+  return (entity as Human).speak !== undefined;
+}
+
+const Josh;
+if(isHuman(Josh)) {
+  Josh.speak(); // now we dont get any error because automatically after we get true in the if statement typescript will infer that Josh is indeed a Human(if we didnt have that type predicate we would get an error because eventhough we have that if statement typescript will not know about the type. it's not like when we use typeof or in or instance type gaurds)
+}
+
+*****************************************
+// MOre about Type predicate(the link: https://stackoverflow.com/questions/40081332/what-does-the-is-keyword-do-in-typescript)
+
+See the reference for user-defined type guard functions for more information.
+
+function isString(test: any): test is string{
+    return typeof test === "string";
+}
+
+function example(foo: any){
+    if(isString(foo)){
+        console.log("it is a string" + foo);
+        console.log(foo.length); // string function
+    }
+}
+example("hello world");
+Using the type predicate 'test is string' in the above format (instead of just using boolean for the return type), after isString() is called, if the function returns true, TypeScript will narrow the type to string in any block guarded by a call to the function. The compiler will think that foo is string in the below-guarded block (and ONLY in the below-guarded block)
+
+{
+    console.log("it is a string" + foo);
+    console.log(foo.length); // string function
+}
+A type predicate is just used in compile time. The resulting .js file (runtime) will have no difference because it does not consider the TYPE.
+
+I will illustrate the differences in below four examples.
+
+E.g 1: the above example code will not have a compile error nor a runtime error.
+
+E.g 2: the below example code will have a compile error (as well as a runtime error) because TypeScript has narrowed the type to string and checked that toExponential does not belong to string method.
+
+function example(foo: any){
+    if(isString(foo)){
+        console.log("it is a string" + foo);
+        console.log(foo.length);
+        console.log(foo.toExponential(2));
+    }
+}
+E.g. 3: the below example code does not have a compile error but will have a runtime error because TypeScript will ONLY narrow the type to string in the block guarded but not after, therefore foo.toExponential will not create compile error (TypeScript does not think it is a string type). However, in runtime, string does not have the toExponential method, so it will have runtime error.
+
+function example(foo: any){
+    if(isString(foo)){
+        console.log("it is a string" + foo);
+        console.log(foo.length);
+    }
+    console.log(foo.toExponential(2));
+}
+E.g. 4: if we don’t use test is string (type predicate), TypeScript will not narrow the type in the block guarded and the below example code will not have compile error but it will have runtime error.
+
+function isString(test: any): boolean{
+    return typeof test === "string";
+}
+function example(foo: any){
+    if(isString(foo)){
+        console.log("it is a string" + foo);
+        console.log(foo.length);
+        console.log(foo.toExponential(2));
+    }
+}
+The conclusion is that test is string (type predicate) is used in compile-time to tell the developers the code will have a chance to have a runtime error. For javascript, the developers will not KNOW the error in compile time. This is the advantage of using TypeScript.
+*******************************************************
+intersection:
+
+type Human = {
+  name: string;
+}
+
+type Alien = {
+  fly: () => void;
+}
+
+type Hybrid = Human & Alien; 
+
+const Josh: Hybrid = {
+  name: 'josh',
+  fly: () => {}
+}
+
+// Return type
+
+type MyFunc = () => string;
+
+type MyReturn = ReturnType<MyFunc>; // MyReturn shows the type MyFunc function returns
+
+****************************************************************
+const existingCartItem = cartItems.find(cartItem => cartItem.id === productToRemove.id); // it's either undefined or CarItem type
+
+if(existingCartItem.quantity === 1){} // type is gonna yell at us because it is unknown whether existingCartItem is undefined or not
+ 
+we can handle this situation using javascript : 
+
+1- using javascript:
+if(existingCartItem && existingCartItem.quantity === 1){}
+
+2- using TypeScript:
+if(existingCartItem?.quantity === 1){} // actually this doesn't work because of the '== 1' part
+
+so if the 'if' statement was like below, it was valid:
+if(existingCartItem?.quantity){} // this is valid not the above code. for the above code we only need to use javascript
+********************************************************
+Typing Third Party Libraries
+npm i @types/redux-logger
+npm i @types/styled-components
+
+//Typing saga
+npm i typed-redux-saga
+npm i --include=dev babel-plugin-macros
+
+//Sass and Sassloader
+npm i sass sassloader
+*****************************************
+the difference between yield and yield* is that yield typically yields the Generator(javascript). yield* is similar but it hands them off to the redux saga library. so redux saga is going to behave the same way except redux saga can coordinate and identify what these effects are, what their return values are going to be
+because if you remember with a saga, a saga can have multiple yield steps. typically with a Generator it's very difficult to determine what the output of these Generators are because each yield is an output of the next call in the Generator
