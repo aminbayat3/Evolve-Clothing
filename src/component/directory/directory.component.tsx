@@ -3,7 +3,7 @@ import CategoryItem from '../directory-item/directory-item.component';
 
 import { CategoriesContainer } from './directory.styles';
 
-const categories = DIRECTORY_DATA; // notice that we put the categories outside of the Directory component
+const categories = DIRECTORY_DATA;
 
 const Directory = () => {
 

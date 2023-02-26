@@ -15,7 +15,7 @@ export type GoogleSignInStart = Action<USER_ACTIONS_TYPES.GOOGLE_SIGN_IN_START>;
 
 export type EmailSignInStart = ActionWithPayload<USER_ACTIONS_TYPES.EMAIL_SIGN_IN_START, EmailSignIn>;
 
-export type SignInSuccess = ActionWithPayload<USER_ACTIONS_TYPES.SIGN_IN_SUCCESS, UserData>;
+export type SignInSuccess = ActionWithPayload<USER_ACTIONS_TYPES.SIGN_IN_SUCCESS, UserData & {id: string}>;
 
 export type SignInFailed = ActionWithPayload<USER_ACTIONS_TYPES.SIGN_IN_FAILED, Error>;
 

@@ -13,20 +13,13 @@ export type DirectoryItemProps = {
   category: DirectoryCategory;
 }
 
-// let CustomDirectoryItem = DirectoryItemContainer;
-
 const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
   const { title, imageUrl, size, route} = category;
   const navigate = useNavigate();
 
   const onNavigateHandler = () => navigate(route);
 
-  // CustomDirectoryItem = size
-  //   ? LargeDirectoryItemContainer
-  //   : DirectoryItemContainer;
-
   return (
-    // <CustomDirectoryItem>
     <DirectoryItemContainer size={size ? size : ''} onClick={onNavigateHandler}> 
       <BackgroundImage imageUrl={imageUrl} />
       <Body>
@@ -34,7 +27,6 @@ const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
         <span>SHOP NOW</span>
       </Body>
       </DirectoryItemContainer>
-      // <CustomDirectoryItem>
   );
 };
 

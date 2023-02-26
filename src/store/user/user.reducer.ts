@@ -11,7 +11,7 @@ import {
 
 
 export type UserState = {
-  readonly currentUser: UserData | null;
+  readonly currentUser: (UserData & {id: string}) | null;
   readonly error: Error | null;
 }
 
