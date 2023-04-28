@@ -2,14 +2,6 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
-
-
-import { getDoc } from "firebase/firestore";
-import {
-  createUserDocumentFromAuth,
-  onAuthStateChangedListener,
-  getCurrentUser,
-} from "./utils/firebase/firebase.utils";
 import Navigation from "./routes/navigation/navigation.component";
 import HomePage from "./routes/homepage/homepage.component";
 import Authentication from "./routes/authentication/authentication.component";
@@ -24,26 +16,10 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserSession());
-    // const unsubscribe = onAuthStateChangedListener(async (user) => {  // if we didn't have an observable for authentication, we should use promise base code(saga)
-    //   if (user) {
-    //     const userDocRef = await createUserDocumentFromAuth(user);
-    //     const userSnapshot = await getDoc(userDocRef);
-
-    //     dispatch(setCurrentUser({
-    //       id: userSnapshot.id,
-    //       ...userSnapshot.data(),
-    //     }));
-    //   } else {
-    //     dispatch(setCurrentUser(user)); // it will passes the action to every single reducer and that is its difference with context
-    //   }
-    // });
-
-    // return () => unsubscribe();
   }, []);
 
   return (
     <div className="App">
-      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Navigation />}>
           <Route index element={<HomePage />} />
