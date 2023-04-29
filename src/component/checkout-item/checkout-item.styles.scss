@@ -1,0 +1,31 @@
+@use "../../styles/util" as u;
+
+.checkout-item {
+    min-height: u.rem(100);
+    border-bottom: u.rem(1) solid darkgrey;
+    font-size: u.rem(19);
+
+    &__image {
+      width: 22%;
+      height: u.rem(142);
+      background-size: cover;
+      background-position: center;
+    }
+
+    &__name,
+    &__quantity,
+    &__price {
+      width: 23%;
+    }
+
+    &__quantity {
+
+      &__arrow {
+        cursor: pointer;
+      }
+    }
+
+    &__remove-button {
+      cursor: pointer;
+    }
+  }

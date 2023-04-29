@@ -1,0 +1,45 @@
+@use "../../styles/util" as u;
+
+@mixin shrinkLabel {
+  top: u.rem(-14);
+  font-size: u.rem(12);
+  color: u.$blackColor;
+}
+
+.form-input {
+  background: none;
+  background-color: u.$whiteColor;
+  color: u.$sub-color;
+  font-size: u.rem(18);
+  display: block;
+  border: none;
+  border-radius: 0;
+  border-bottom: u.rem(1) solid u.$sub-color;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus ~ .form-input-label {
+    // ~ this is the subsequent selector so the label should be positioned after the input element
+    @include shrinkLabel();
+  }
+}
+
+input[type="password"] {
+  letter-spacing: 0.3em;
+}
+
+.form-input-label {
+  color: u.$sub-color;
+  font-size: u.rem(16);
+  font-weight: normal;
+  pointer-events: none;
+  left: u.rem(5);
+  top: u.rem(10);
+  transition: 300ms ease all;
+
+  &.shrink {
+    @include shrinkLabel();
+  }
+}

@@ -7,45 +7,40 @@ import {
 import CheckoutItem from "../../component/checkout-item/checkout-item.component";
 import PaymentForm from "../../component/payment-form/payment-form.component";
 
-import {
-  CheckoutContainer,
-  CheckoutHeader,
-  HeaderBlock,
-  Total,
-} from "./checkout.styles";
+import "./checkout.styles.scss";
 
 const CheckoutPage = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
   return (
-    <CheckoutContainer>
-      <CheckoutHeader>
-        <HeaderBlock>
+    <div className="checkout d-flex flex-column align-items-center mx-auto mt-8 mb-0">
+      <div className="checkout__header d-flex space-between w-100 py-1 px-0">
+        <div className="checkout__header__block me-1">
           <span>Product</span>
-        </HeaderBlock>
-        <HeaderBlock>
+        </div>
+        <div className="checkout__header__block">
           <span>Description</span>
-        </HeaderBlock>
-        <HeaderBlock>
+        </div>
+        <div className="checkout__header__block">
           <span>Quantity</span>
-        </HeaderBlock>
-        <HeaderBlock>
+        </div>
+        <div className="checkout__header__block">
           <span>Price</span>
-        </HeaderBlock>
-        <HeaderBlock>
+        </div>
+        <div className="checkout__header__block">
           <span>Remove</span>
-        </HeaderBlock>
-      </CheckoutHeader>
+        </div>
+      </div>
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} product={cartItem} />
       ))}
 
-      <Total>
+      <div className="checkout__total mt-6 ms-auto">
         <span>TOTAL: ${cartTotal}</span>
-      </Total>
+      </div>
       <PaymentForm />
-    </CheckoutContainer>
+    </div>
   );
 };
 

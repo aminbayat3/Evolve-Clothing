@@ -6,16 +6,14 @@ import CartItem from "../cart-item/cart-item.component";
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { setIsCartOpen } from "../../store/cart/cart.action";
 
-import {
-  CartDropdownContainer,
-  EmptyMessage,
-  CartItems,
-} from "./cart-dropdown.styles";
+import "./cart-dropdown.styles.scss";
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
+
+  const cartItemsLength = cartItems.length;
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
@@ -24,20 +22,20 @@ const CartDropdown = () => {
   };
 
   return (
-    <CartDropdownContainer>
-      <CartItems scroll={cartItems.length > 2}>
+    <div className="cart-dropdown position-absolute d-flex flex-column justify-content-center">
+      <div className="cart-dropdown__items d-flex flex-column" style={cartItemsLength > 2 ? undefined : {overflowY: "initial"}}>
         {cartItems.length ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))
         ) : (
-          <EmptyMessage>Your cart is empty</EmptyMessage>
+          <span className="empty-message">Your cart is empty</span>
         )}
-      </CartItems>
+      </div>
       <Button type="button" onClick={goToCheckoutHandler}>
         GO TO CHECKOUT
       </Button>
-    </CartDropdownContainer>
+    </div>
   );
 };
 

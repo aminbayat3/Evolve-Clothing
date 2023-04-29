@@ -2,17 +2,10 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import { AuthError, AuthErrorCodes } from 'firebase/auth';
 import { useDispatch } from "react-redux";
 
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils";
-
 import { signUpStart } from "../../store/user/user.action";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
-
-import { SignUpContainer } from "./sign-up-form.styles";
 
 const defaultFormFields = {
   displayName: "",
@@ -62,8 +55,8 @@ const SignUpForm = () => {
   };
   // from the begining to this point everything gets re-rendered but React is smart enought to deal with Dom or after this point.
   return (
-    <SignUpContainer>
-      <h2>Don't have an account</h2>
+    <div className="sign-up d-flex flex-column col-5">
+      <h2 className="my-3 mx-0">Don't have an account</h2>
       <span>Sign up with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -102,7 +95,7 @@ const SignUpForm = () => {
 
         <Button type="submit">Sign Up</Button>
       </form>
-    </SignUpContainer>
+    </div>
   );
 };
 

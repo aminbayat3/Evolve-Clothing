@@ -1,0 +1,9 @@
+@use "../../styles/util" as u;
+
+.category {
+
+  &__title {
+    font-size: u.rem(38);
+  }
+
+}

@@ -1,0 +1,15 @@
+@use "../../styles/util" as u;
+
+.payment {
+  height: u.rem(300);
+
+  &__form {
+    height: u.rem(100);
+    min-width: u.rem(500);
+
+    button {
+      margin-left: auto;
+      margin-top: 30px;
+    }
+  }
+}

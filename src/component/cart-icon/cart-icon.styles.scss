@@ -1,0 +1,18 @@
+@use "../../styles/util" as u;
+
+.cart-icon {
+    width: u.rem(45);
+    height: u.rem(45);
+    cursor: pointer;
+
+    &__shopping {
+        width: u.rem(23);
+        height: u.rem(23);
+    }
+
+    &__item-count {
+        font-size: u.rem(10);
+        font-weight: bold;
+        bottom: u.rem(12);
+    }
+}

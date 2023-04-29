@@ -1,0 +1,48 @@
+@use "../../styles/util" as u;
+
+.directory-item {
+  height: 240px;
+  border-radius: u.rem(10);
+  overflow: hidden;
+  $categoryItem: &;
+
+  &:hover {
+    cursor: pointer;
+
+    #{$categoryItem}__background-image {
+      transform: scale(1.1);
+      transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+    }
+
+    #{$categoryItem}__body {
+      opacity: 0.9;
+    }
+  }
+
+  &.large {
+    height: u.rem(390);
+  }
+
+  &__background-image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  &__body {
+    height: u.rem(90);
+    border: 1px solid u.$blackColor;
+    background-color: u.$whiteColor;
+    opacity: 0.7;
+
+    &__title {
+      font-weight: bold;
+      font-size: u.rem(22);
+      color: #4a4a4a;
+    }
+
+    &__subtitle {
+      font-weight: lighter;
+      font-size: u.rem(16);
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@use '../../styles/util' as u;
+
+.spinner-overlay {
+  height: 60vh;
+
+  .spinner-container {
+    @include u.spinner(50px, 50px);
+  }
+}
+
+

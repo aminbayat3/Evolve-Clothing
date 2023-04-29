@@ -1,0 +1,48 @@
+@use "../../styles/util" as u;
+
+.base-button {
+    min-width: u.rem(165);
+    height: u.rem(50);
+    letter-spacing: u.rem(0.5);
+    line-height: u.rem(50);
+    padding: 0 u.rem(35);
+    font-size: u.rem(15);
+    background-color: u.$blackColor;
+    color: u.$whiteColor;
+    font-family: u.$font;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: u.$whiteColor;
+        color: u.$blackColor;
+        border: 1px solid u.$blackColor;
+    }
+
+    &.google {
+        background-color: #4385f4;
+        color: u.$whiteColor;
+
+        &:hover {
+            background-color: #357ae8;
+            border: none;
+        }
+    }
+
+    &.inverted {
+        background-color: u.$whiteColor;
+        color: u.$blackColor;
+        border: 1px solid u.$blackColor;
+
+        &:hover {
+            background-color: u.$blackColor;
+            color: u.$whiteColor;
+            border: none;
+        }
+    }
+
+    &__spinner-container {
+      @include u.spinner(u.rem(30), u.rem(30));
+    }
+}

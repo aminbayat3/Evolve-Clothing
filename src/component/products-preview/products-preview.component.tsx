@@ -1,9 +1,10 @@
 import { FC } from "react";
-import ProductCard from "../../component/product-card/product-card.component";
+import { Link } from "react-router-dom";
 
+import ProductCard from "../../component/product-card/product-card.component";
 import { CategoryItem } from "../../store/categories/categories.type";
 
-import { ProductPreview, Preview, Title } from  "./products-preview.styles";
+import "./products-preview.styles.scss";
 
 export type ProductsPreviewProps = {
   products: CategoryItem[];
@@ -13,18 +14,18 @@ export type ProductsPreviewProps = {
 const ProductsPreview: FC<ProductsPreviewProps> = ({ products, title }) => {
   
   return (
-    <ProductPreview>
+    <div className="products d-flex flex-column mb-6">
       <h2>
-        <Title to={title}>{title.toUpperCase()}</Title>
+        <Link className="products__title mb-5" to={title}>{title.toUpperCase()}</Link>
       </h2>
-      <Preview>
+      <div className="products__preview d-flex space-between gapx-1">
         {products
           .filter((_, idx) => idx < 4)
           .map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-      </Preview>
-    </ProductPreview>
+      </div>
+    </div>
   );
 };
 

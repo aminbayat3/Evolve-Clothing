@@ -1,0 +1,43 @@
+@use '../../styles/util' as u;
+
+.product-card {
+    height: u.rem(350);
+
+    img {
+        height: 93%;
+        object-fit: cover;
+    }
+
+    button {
+        width: 80%;
+        opacity: 0.7;
+        position: absolute;
+        top: u.rem(255);
+        display: none;
+    }
+
+    &:hover {
+        img {
+            opacity: 0.8;
+        }
+
+        button {
+            display: flex;
+            opacity: 0.85;
+        }
+    }
+
+    &__footer {
+        height: 5%;
+        font-size: u.rem(18);
+
+        &__name {
+            width: 90%;
+        }
+
+        &__price {
+            width: 10%;
+        }
+    }
+
+}

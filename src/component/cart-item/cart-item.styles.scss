@@ -1,0 +1,18 @@
+@use "../../styles/util" as u;
+
+.cart-item {
+  height: u.rem(80);
+
+  img {
+    width: 30%;
+  }
+
+  &__details {
+    width: 70%;
+    padding: 10px 20px;
+
+    &__name {
+      font-size: u.rem(16);
+    }
+  }
+}

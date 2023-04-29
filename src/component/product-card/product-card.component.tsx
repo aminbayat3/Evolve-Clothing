@@ -7,7 +7,7 @@ import { selectCartItems } from '../../store/cart/cart.selector';
 import { addItemToCart } from '../../store/cart/cart.action';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
-import { ProductCardContainer, Footer } from "./product-card.styles";
+import "./product-card.styles.scss";
 
 export type ProductCardProps = {
   product: CategoryItem;
@@ -21,16 +21,16 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const addProductToCart = () => dispatch(addItemToCart(cartItems, product, false));
 
   return (
-    <ProductCardContainer>
-      <img src={imageUrl} alt={`${name}`} />
+    <div className='product-card col-3 center flex-column position-relative'>
+      <img className=' w-100 mb-1' src={imageUrl} alt={`${name}`} />
       
-      <Footer>
-        <span className="name">{name}</span>
-        <span className="price">${price}</span>
-      </Footer>
+      <div className='product-card__footer w-100 d-flex space-between'>
+        <span className="product-card__footer__name mb-4">{name}</span>
+        <span className="product-card__footer__price">${price}</span>
+      </div>
 
       <Button type='button' buttonType={ BUTTON_TYPE_CLASSES.inverted } onClick={addProductToCart}>ADD TO CART</Button>
-    </ProductCardContainer>
+    </div>
   );
 };
 

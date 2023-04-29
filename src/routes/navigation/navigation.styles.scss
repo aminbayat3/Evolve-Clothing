@@ -1,0 +1,24 @@
+@use '../../styles/util' as u;
+
+.nav {
+  height: u.rem(70);
+
+  &__logo-container {
+    width: u.rem(75);
+
+    &__logo {
+      width: u.rem(45);
+      height: 90%;
+    }
+  }
+
+  &__links {
+    width: 50%;
+    height: 100%;
+
+    &__link {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  }
+}

@@ -7,8 +7,6 @@ import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { googleSignInStart, emailSignInStart } from "../../store/user/user.action";
 
-import { SignInContainer, ButtonsContainer } from "./sign-in-form.styles";
-
 const defaultFormFields = {
   email: "",
   password: "",
@@ -56,8 +54,8 @@ const SignInForm = () => {
   };
 
   return (
-    <SignInContainer>
-      <h2>I already have an account</h2>
+    <div className="sign-in col-5 d-flex flex-column">
+      <h2 className="my-3 mx-0">I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -76,7 +74,7 @@ const SignInForm = () => {
           onChange={handleChange}
           required
         />
-        <ButtonsContainer>
+        <div className="d-flex space-between">
           <Button type="submit">Sign in</Button>
           <Button
             type="button"
@@ -85,9 +83,9 @@ const SignInForm = () => {
           >
             Sign in with Google{" "}
           </Button>
-        </ButtonsContainer>
+        </div>
       </form>
-    </SignInContainer>
+    </div>
   );
 };
 

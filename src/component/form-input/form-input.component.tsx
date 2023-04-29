@@ -1,21 +1,23 @@
 import { InputHTMLAttributes, FC } from "react";
 
-import { FormInputLabel, Input, Group } from "./from-input.styles";
+import "./from-input.styles.scss";
 
 export type FormInputProps = { label: string } & InputHTMLAttributes<HTMLInputElement>;
 
 const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
   return (
-    <Group>
-      <Input {...otherProps} />
+    <div className="my-6 position-relative">
+      <input className="form-input w-100 py-3 pe-3 ps-1 my-5" {...otherProps} />
 
       {label && (
-        <FormInputLabel shrink={ Boolean(typeof otherProps.value === 'string' && otherProps.value.length) }> 
+        <label className={`form-input-label position-absolute ${(typeof otherProps.value === 'string') && (otherProps.value.length ? "shrink" : "")}`}> 
           {label}
-        </FormInputLabel>
+        </label>
       )}
-    </Group>
+    </div>
   );
 }; // we could have said: (otherProps.value && typeof otherProps.value === 'string' && otherProps.value.length) but since undefined is a primitive type in javascript there's no need to do the first check the second check is doing both of them
+
+//shrink={ Boolean(typeof otherProps.value === 'string' && otherProps.value.length) }
 
 export default FormInput;

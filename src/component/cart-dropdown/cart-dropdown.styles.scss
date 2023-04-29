@@ -1,0 +1,38 @@
+@use '../../styles/util' as u;
+
+.cart-dropdown {
+    width: u.rem(240);
+    height: u.rem(340);
+    border: 1px solid u.$sub-color;
+    background-color: u.$whiteColor;
+    padding: u.rem(20);
+    top: u.rem(80);
+    right: 0;
+    z-index: 5;
+
+    &__items {
+        height: u.rem(240);
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: u.rem(8);
+            background: u.$sub-color;
+            border-radius: 0 u.rem(10) u.rem(10) 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: u.$blackColor;
+            border-radius: 0 u.rem(10) u.rem(10) 0;
+        }
+
+        .empty-message {
+            font-size: u.rem(18);
+            margin: u.rem(50) auto;
+        }
+    }
+
+    button {
+        margin-top: auto; //the highest margin-top// it would go down as much as it can
+    }
+
+}

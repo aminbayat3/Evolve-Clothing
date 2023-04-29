@@ -10,12 +10,7 @@ import {
   clearItemFromCart,
 } from "../../store/cart/cart.action";
 
-import {
-  CheckoutItemContainer,
-  ImageContainer,
-  Quantity,
-  Price,
-} from "./checkout-item.styles";
+import './checkout-item.styles.scss';
 
 export type CheckoutItemProps = {
   product: CartItem;
@@ -39,18 +34,20 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
   };
 
   return (
-    <CheckoutItemContainer>
-      <ImageContainer imageUrl={imageUrl} />
+    <div className="checkout-item w-100 d-flex align-items-center py-4 px-0">
+      <div className="checkout-item__image me-4" style={{
+        backgroundImage: `url(${imageUrl})`
+      }} />
 
-      <span>{name}</span>
-      <Quantity>
-        <div onClick={removeProductFromCart}>&#10094;</div>
-        <span>{quantity}</span>
-        <div onClick={addProductToCart}>&#10095;</div>
-      </Quantity>
-      <Price>{price}</Price>
-      <div onClick={clearProductFromCart}>&#10005;</div>
-    </CheckoutItemContainer>
+      <span className="checkout-item__name">{name}</span>
+      <div className="checkout-item__quantity d-flex">
+        <div className="checkout-item__quantity__arrow" onClick={removeProductFromCart}>&#10094;</div>
+        <span className="checkout-item__quantity__value my-0 mx-3">{quantity}</span>
+        <div className="checkout-item__quantity__arrow" onClick={addProductToCart}>&#10095;</div>
+      </div>
+      <span className="checkout-item__price ps-3">{price}</span>
+      <div className="checkout-item__remove-button ps-1" onClick={clearProductFromCart}>&#10005;</div>
+    </div>
   );
 };
 

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsCartOpen } from '../../store/cart/cart.action';
 import { selectCartCount, selectIsCartOpen } from '../../store/cart/cart.selector';
 
-import { CartIconContainer, ShoppingIcon, ItemCount } from './cart-icon.styles';
+import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
+import "./cart-icon.styles.scss";
 
 const CartIcon = () => {
     const dispatch = useDispatch();
@@ -16,10 +17,10 @@ const CartIcon = () => {
         // setIsCartOpen(prevIsCartOpen => !prevIsCartOpen); // when we used useState
     }
     return(
-        <CartIconContainer onClick={toggleCart}>
-            <ShoppingIcon />
-            <ItemCount>{cartCount}</ItemCount>
-        </CartIconContainer>
+        <div className='cart-icon position-relative center' onClick={toggleCart}>
+            <ShoppingIcon className='cart-icon__shopping' />
+            <span className='cart-icon__item-count position-absolute'>{cartCount}</span>
+        </div>
     )
 }
 

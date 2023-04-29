@@ -1,21 +1,21 @@
-@use '../util' as u;
+@use "../util" as u;
 
 html {
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-*, *::before, *::after {
-    box-sizing: inherit;
-    scroll-behavior: smooth;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: u.$font;
+  margin: 0;
+  font-family: u.$font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: u.rem(20) u.rem(40);
 }
-
-
-
-
-

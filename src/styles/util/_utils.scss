@@ -21,6 +21,10 @@
 .d-flex {
   display: flex;
 }
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
 .flex-column {
   flex-direction: column;
 }
@@ -34,9 +38,47 @@
   justify-content: space-between;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .text-center {
   text-align: center;
 }
 .text-uppercase {
   text-transform: uppercase;
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animate($name,$duration,$method,$times){
+  animation: $name $duration $method $times;
+  -webkit-animation: $name $duration $method $times;
+}
+
+@mixin spinner($width, $height) {
+  width: $width;
+  height: $height;
+  display: inline-block;
+  border: 3px solid rgba(195, 195, 195, 0.6);
+  border-radius: 50%;
+  border-top-color: #636767;
+  @include animate(spin, 1s, ease-in-out, infinite);
+}
+
+@include keyframes(spin) {
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
 }

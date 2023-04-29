@@ -1,14 +1,14 @@
 import SignUpForm from "../../component/sign-up-form/sign-up-form.component";
 import SignInForm from "../../component/sign-in-form/sign-in-form.component";
 
-import { AuthenticationContainer } from './authentication.styles';
+import "./authentication.styles.scss";
 
 const Authentication = () => {
   return (
-    <AuthenticationContainer>
+    <div className="authentication-container d-flex space-between my-6 mx-auto">
       <SignInForm />
       <SignUpForm />
-    </AuthenticationContainer>
+    </div>
   );
 };
 

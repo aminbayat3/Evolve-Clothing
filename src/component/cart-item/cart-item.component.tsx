@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import { CartItem as TCartItem } from '../../store/cart/cart.type';
 
-import { CartItemContainer, ItemDetails } from './cart-item.styles';
+import './cart-item.styles.scss';
 
 export type CartItemProps = {
     cartItem: TCartItem;
@@ -11,14 +11,14 @@ export type CartItemProps = {
 const CartItem: FC<CartItemProps> = ({ cartItem }) => {
     const { name, imageUrl, price, quantity } = cartItem;
     return(
-        <CartItemContainer>
+        <div className='cart-item w-100 d-flex mb-4'>
             <img src={imageUrl} alt={`${name}`} />
 
-            <ItemDetails>
-                <span className='name'> {name} </span>
-                <span className='price'>{quantity} x ${price}</span>
-            </ItemDetails>
-        </CartItemContainer>
+            <div className='cart-item__details d-flex flex-column'>
+                <span className='cart-item__details__name'> {name} </span>
+                <span className='cart-item__details__price'>{quantity} x ${price}</span>
+            </div>
+        </div>
     )
 }
 

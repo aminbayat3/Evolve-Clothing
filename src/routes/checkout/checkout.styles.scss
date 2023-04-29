@@ -1,0 +1,24 @@
+ @use '../../styles/util' as u;
+ 
+ .checkout {
+  width: 55%;
+  min-height: 90vh;
+
+  &__header {
+    height: u.rem(40);
+    font-size: u.rem(17);
+    border-bottom: u.rem(1) solid darkgrey;
+
+    &__block {
+      text-transform: capitalize;
+      width: 23%;
+
+      &:last-child {
+        width: 8%;
+      }
+    }
+  }
+  &__total {
+    font-size: u.rem(36);
+  }
+}
