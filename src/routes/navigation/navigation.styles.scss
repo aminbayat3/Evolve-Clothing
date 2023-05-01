@@ -3,22 +3,36 @@
 .nav {
   height: u.rem(70);
 
+
   &__logo-container {
-    width: u.rem(75);
+    width: u.rem(60);
+
+    @include u.breakpoint-up('md') {
+      width: u.rem(75);
+    }
 
     &__logo {
       width: u.rem(45);
-      height: 90%;
+      height: 60%;
+
+      @include u.breakpoint-up('md') {
+        height: 46%;
+      }
     }
   }
 
   &__links {
-    width: 50%;
+    width: 80%;
     height: 100%;
+
+    @include u.breakpoint-up('md') {
+      width: 50%;
+    }
 
     &__link {
       padding: 10px 15px;
       cursor: pointer;
+      color: u.$whiteColor;
     }
   }
 }

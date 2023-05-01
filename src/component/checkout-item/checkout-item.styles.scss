@@ -4,12 +4,17 @@
     min-height: u.rem(100);
     border-bottom: u.rem(1) solid darkgrey;
     font-size: u.rem(19);
-
+    
     &__image {
       width: 22%;
       height: u.rem(142);
       background-size: cover;
       background-position: center;
+
+      @include u.breakpoint-down('xs') {
+        width: 27%;
+        height: u.rem(122);
+      }
     }
 
     &__name,
@@ -22,10 +27,31 @@
 
       &__arrow {
         cursor: pointer;
+        color: u.$whiteColor;
+      }
+    }
+
+    &__price {
+      display: none;
+
+      @include u.breakpoint-up('sm') {
+        display: inline;
       }
     }
 
     &__remove-button {
       cursor: pointer;
+      color: u.$whiteColor;
+    }
+
+
+    @include u.breakpoint-down('sm') {
+      font-size: u.rem(17);
+    }
+
+    @include u.breakpoint-down('xs') {
+      min-height: u.rem(70);
+      font-size: u.rem(13.5);
+      justify-content: space-between;
     }
   }

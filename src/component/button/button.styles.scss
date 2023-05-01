@@ -28,6 +28,18 @@
             background-color: #357ae8;
             border: none;
         }
+
+        @include u.breakpoint-down('md') {
+            text-transform: lowercase;
+            padding: 0 u.rem(20);
+            min-width: u.rem(140);
+        }
+
+        @include u.breakpoint-down('sm') {
+            min-width: u.rem(130);
+            padding: 0 u.rem(10);
+            margin-left: u.rem(10);
+        }
     }
 
     &.inverted {
@@ -44,5 +56,10 @@
 
     &__spinner-container {
       @include u.spinner(u.rem(30), u.rem(30));
+      top: u.rem(8);
+    }
+
+    @include u.breakpoint-down('sm') {
+        min-width: u.rem(130);
     }
 }

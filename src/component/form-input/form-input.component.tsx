@@ -7,7 +7,7 @@ export type FormInputProps = { label: string } & InputHTMLAttributes<HTMLInputEl
 const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
   return (
     <div className="my-6 position-relative">
-      <input className="form-input w-100 py-3 pe-3 ps-1 my-5" {...otherProps} />
+      <input className="form-input w-100 py-4 pe-3 ps-2 my-5" {...otherProps} />
 
       {label && (
         <label className={`form-input-label position-absolute ${(typeof otherProps.value === 'string') && (otherProps.value.length ? "shrink" : "")}`}> 

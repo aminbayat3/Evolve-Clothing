@@ -5,6 +5,7 @@ h2,
 h3 {
   font-family: u.$font;
   font-weight: 800;
+  color: u.$whiteColor;
 }
 
 h1 {
@@ -17,32 +18,18 @@ h1 {
   }
 }
 
-h2 {
-  font-size: clamp(u.rem(20), u.rem(17.5) + 1.1vw, u.rem(40));
-  line-height: u.rem(50);
-  letter-spacing: -0.04em;
-  max-width: u.rem(510);
-  margin: 0;
-}
-
-h3 {
-  font-size: clamp(u.rem(15), u.rem(10) + 1vw, u.rem(20));
-  line-height: u.rem(22);
-  letter-spacing: -0.04em;
-  color: white;
-
-  @include u.breakpoint-up('small') {
-    line-height: u.rem(24);
-  }
-}
-
 p {
   margin: 0;
+  color: u.$whiteColor;
+}
+
+span {
+  color: u.$whiteColor;
 }
 
 a,
 a:visited,
 a:active {
   text-decoration: none;
-  color: black;
+  color: u.$whiteColor;
 }

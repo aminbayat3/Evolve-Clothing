@@ -1,20 +1,20 @@
 @use "../../styles/util" as u;
 
 @mixin shrinkLabel {
-  top: u.rem(-14);
+  top: u.rem(-17);
   font-size: u.rem(12);
-  color: u.$blackColor;
+  color: u.$whiteColor;
 }
 
 .form-input {
   background: none;
-  background-color: u.$whiteColor;
-  color: u.$sub-color;
+  background-color: u.$blackColor;
+  color: u.$whiteColor;
   font-size: u.rem(18);
   display: block;
   border: none;
-  border-radius: 0;
-  border-bottom: u.rem(1) solid u.$sub-color;
+  border-radius: u.rem(4);
+  border-bottom: u.rem(0.5) solid u.$whiteColor;
 
   &:focus {
     outline: none;
@@ -31,12 +31,12 @@ input[type="password"] {
 }
 
 .form-input-label {
-  color: u.$sub-color;
+  color: u.$whiteColor;
   font-size: u.rem(16);
   font-weight: normal;
   pointer-events: none;
   left: u.rem(5);
-  top: u.rem(10);
+  top: u.rem(14);
   transition: 300ms ease all;
 
   &.shrink {

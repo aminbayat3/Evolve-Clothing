@@ -17,5 +17,11 @@ body {
   font-family: u.$font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #263442 74%);
   padding: u.rem(20) u.rem(40);
+  min-height: 100vh;
+  background-image: linear-gradient(147deg, #000000 0%, #1c252d 74%);
+  overflow-x: hidden;
 }
+

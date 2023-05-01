@@ -54,7 +54,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-in col-5 d-flex flex-column">
+    <div className="sign-in col-md2-5 col-sm-9 col-xs-12 d-flex flex-column mx-xs-9 mx-md2-0 mb-xs-7 mb-md2-0">
       <h2 className="my-3 mx-0">I already have an account</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -74,7 +74,7 @@ const SignInForm = () => {
           onChange={handleChange}
           required
         />
-        <div className="d-flex space-between">
+        <div className="d-flex justify-md2-space-between justify-xs-center">
           <Button type="submit">Sign in</Button>
           <Button
             type="button"

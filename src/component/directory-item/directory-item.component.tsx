@@ -16,7 +16,7 @@ const DirectoryItem: FC<DirectoryItemProps> = ({ category }) => {
   const onNavigateHandler = () => navigate(route);
 
   return (
-    <div className={`directory-item col-3 flex-grow-1 mx-2 my-3 center ${size ? "large": ""}`} onClick={onNavigateHandler}> 
+    <div className={`directory-item col-md-3 col-sm-5 col-xs-12 flex-grow-1 mx-2 my-3 center ${size ? "large": ""}`} onClick={onNavigateHandler}> 
       <div className='directory-item__background-image w-100 h-100' style={{
         backgroundImage: `url(${imageUrl})`
       }} />

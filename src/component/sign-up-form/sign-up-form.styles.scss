@@ -1,0 +1,11 @@
+@use '../../styles/util' as u;
+
+.sign-up {
+
+    button {
+        @include u.breakpoint-down('xs') {
+            margin:0 auto;
+        }
+        
+    }
+}

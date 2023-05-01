@@ -3,19 +3,45 @@
  .checkout {
   width: 55%;
   min-height: 90vh;
+  min-width: u.rem(300);
 
   &__header {
     height: u.rem(40);
-    font-size: u.rem(17);
+    font-size: u.rem(15);
     border-bottom: u.rem(1) solid darkgrey;
 
     &__block {
       text-transform: capitalize;
-      width: 23%;
+      width: 15%;
+
+      &--price {
+        display: none;
+
+        @include u.breakpoint-up('sm') {
+          display: block;
+        }
+      }
+
 
       &:last-child {
-        width: 8%;
+        width: 15%;
+
+        @include u.breakpoint-up('sm') {
+          width: 8%;
+        }
       }
+
+      @include u.breakpoint-up('sm') {
+        width: 23%;
+      }
+    }
+
+    @include u.breakpoint-up('sm') {
+      font-size: u.rem(16);
+    }
+
+    @include u.breakpoint-up('md') {
+      font-size: u.rem(17);
     }
   }
   &__total {

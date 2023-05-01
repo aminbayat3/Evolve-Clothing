@@ -2,8 +2,9 @@
 
 .directory-item {
   height: 240px;
-  border-radius: u.rem(10);
   overflow: hidden;
+  border-radius: u.rem(10);
+  box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.8), 0 0 4px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.4);
   $categoryItem: &;
 
   &:hover {
@@ -20,7 +21,11 @@
   }
 
   &.large {
-    height: u.rem(390);
+    height: u.rem(240);
+
+    @include u.breakpoint-up('md') {
+      height: u.rem(360);
+    }
   }
 
   &__background-image {
@@ -43,6 +48,7 @@
     &__subtitle {
       font-weight: lighter;
       font-size: u.rem(16);
+      color: u.$blackColor;
     }
   }
 }

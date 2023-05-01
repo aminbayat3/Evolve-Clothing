@@ -1,5 +1,9 @@
 @use "../../styles/util" as u;
 
 .authentication-container {
-    width: u.rem(900);
+    max-width: u.rem(900);
+
+    @include u.breakpoint-down('sm2') {
+        
+    }
 }

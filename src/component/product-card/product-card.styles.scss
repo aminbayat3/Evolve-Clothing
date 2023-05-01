@@ -1,43 +1,61 @@
-@use '../../styles/util' as u;
+@use "../../styles/util" as u;
 
 .product-card {
-    height: u.rem(350);
+  height: u.rem(350);
 
+  img {
+    height: 93%;
+    object-fit: cover;
+    border-radius: u.rem(10);
+    box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.8),
+      0 0 4px rgba(255, 255, 255, 0.6), 0 0 3px rgba(255, 255, 255, 0.4);
+  }
+
+  button {
+    position: absolute;
+    top: u.rem(255);
+    opacity: 0.9;
+    display: block;
+    min-width: unset;
+
+    &:hover {
+      img {
+        opacity: unset;
+      }
+
+      button {
+        opacity: unset;
+      }
+    }
+
+    @include u.breakpoint-up("md") {
+      width: 80%;
+      opacity: 0.7;
+      display: none;
+    }
+  }
+
+  &:hover {
     img {
-        height: 93%;
-        object-fit: cover;
+      opacity: 0.8;
     }
 
     button {
-        width: 80%;
-        opacity: 0.7;
-        position: absolute;
-        top: u.rem(255);
-        display: none;
+      display: flex;
+      opacity: 0.85;
+    }
+  }
+
+  &__footer {
+    height: 5%;
+    font-size: u.rem(18);
+
+    &__name {
+      width: 90%;
     }
 
-    &:hover {
-        img {
-            opacity: 0.8;
-        }
-
-        button {
-            display: flex;
-            opacity: 0.85;
-        }
+    &__price {
+      width: 10%;
     }
-
-    &__footer {
-        height: 5%;
-        font-size: u.rem(18);
-
-        &__name {
-            width: 90%;
-        }
-
-        &__price {
-            width: 10%;
-        }
-    }
-
+  }
 }

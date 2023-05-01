@@ -40,13 +40,13 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ product }) => {
       }} />
 
       <span className="checkout-item__name">{name}</span>
-      <div className="checkout-item__quantity d-flex">
+      <div className="checkout-item__quantity d-flex me-xs-3 me-sm-0">
         <div className="checkout-item__quantity__arrow" onClick={removeProductFromCart}>&#10094;</div>
         <span className="checkout-item__quantity__value my-0 mx-3">{quantity}</span>
         <div className="checkout-item__quantity__arrow" onClick={addProductToCart}>&#10095;</div>
       </div>
       <span className="checkout-item__price ps-3">{price}</span>
-      <div className="checkout-item__remove-button ps-1" onClick={clearProductFromCart}>&#10005;</div>
+      <div className="checkout-item__remove-button ps-sm-1 me-xs-5 me-sm-0" onClick={clearProductFromCart}>&#10005;</div>
     </div>
   );
 };

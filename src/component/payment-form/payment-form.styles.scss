@@ -7,9 +7,25 @@
     height: u.rem(100);
     min-width: u.rem(500);
 
+    @include u.breakpoint-down('sm') {
+      min-width: u.rem(400);
+    }
+
+    @include u.breakpoint-down('xs') {
+      min-width: u.rem(250);
+      justify-content: start;
+    }
+
     button {
       margin-left: auto;
-      margin-top: 30px;
+      margin-top: u.rem(30);
+  
+      @include u.breakpoint-down('xs') {
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
   }
 }
+
+

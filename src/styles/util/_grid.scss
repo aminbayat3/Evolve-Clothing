@@ -39,6 +39,8 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
   }
 }
 
+// we need to use gaps instead of mx and my to make sure the grid system works as expected
+
 @each $key, $val in $grid-gaps {
   .gapy-#{$key} > * {
     padding-top: $val;
@@ -57,6 +59,16 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
   }
 }
 
+@each $breakpoint, $bValue in b.$breakpoints_up {
+  @include b.breakpoint-up($breakpoint) {
+    @each $val in $layout-values {
+      .justify-#{$breakpoint}-#{$val} {
+        justify-content: $val;
+      }
+    }
+  }
+}
+
 // col classes
 //default
 @for $i from 1 through $grid-columns {
@@ -72,7 +84,7 @@ $layout-values: flex-start, flex-end, center, space-between, space-around;
     @for $i from 1 through $grid-columns {
       .col-#{$breakpoint}-#{$i} {
         box-sizing: border-box;
-        flex-grow: 1;
+        flex-grow: 0;
         width: math.div($i * 100%, $grid-columns);
       }
     }

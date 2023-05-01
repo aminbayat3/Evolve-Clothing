@@ -18,7 +18,7 @@ const ProductsPreview: FC<ProductsPreviewProps> = ({ products, title }) => {
       <h2>
         <Link className="products__title mb-5" to={title}>{title.toUpperCase()}</Link>
       </h2>
-      <div className="products__preview d-flex space-between gapx-1">
+      <div className="products__preview row space-between gapx-1">
         {products
           .filter((_, idx) => idx < 4)
           .map((product) => (

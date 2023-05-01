@@ -5,7 +5,7 @@ import "./authentication.styles.scss";
 
 const Authentication = () => {
   return (
-    <div className="authentication-container d-flex space-between my-6 mx-auto">
+    <div className="authentication-container row space-between my-6 mx-auto">
       <SignInForm />
       <SignUpForm />
     </div>

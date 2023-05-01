@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { CategoryItem } from '../../store/categories/categories.type';
 
 import { selectCartItems } from '../../store/cart/cart.selector';
@@ -21,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const addProductToCart = () => dispatch(addItemToCart(cartItems, product, false));
 
   return (
-    <div className='product-card col-3 center flex-column position-relative'>
+    <div className='product-card col-lg-3 col-sm-6 col-xs-12 center flex-column position-relative p-2 mb-3'>
       <img className=' w-100 mb-1' src={imageUrl} alt={`${name}`} />
       
       <div className='product-card__footer w-100 d-flex space-between'>

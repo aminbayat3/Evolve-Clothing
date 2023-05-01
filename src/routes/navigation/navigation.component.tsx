@@ -10,7 +10,7 @@ import CartDropdown from "../../component/cart-dropdown/cart-dropdown.component"
 
 import { signOutStart } from "../../store/user/user.action";
 
-import { ReactComponent as Logo } from "../../assets/Evolve-Clothing.svg";
+import logo from "../../assets/logo.png";
 import "./navigation.styles.scss";
 
 const Navigation = () => {
@@ -22,9 +22,9 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="nav d-flex space-between position-relative mb-5 w-100">
-        <Link className="nav__logo-container center h-100" to="/">
-          <Logo className="nav__logo-container__logo mt-1" />
+      <div className="nav d-flex space-between position-relative mb-xs-4 mb-md-5  px-xs-4 py-xs-3 px-md-0 py-md-0 w-100">
+        <Link className="nav__logo-container pb-xs-1 pb-sm-0 center h-100" to="/">
+          <img src={logo} alt="logo" className="nav__logo-container__logo mt-1" />
         </Link>
         <div className="nav__links d-flex align-items-center justify-flex-end ">
           <Link className="nav__links__link py-3 px-4" to="/shop">

@@ -23,8 +23,8 @@ const CartDropdown = () => {
 
   return (
     <div className="cart-dropdown position-absolute d-flex flex-column justify-content-center">
-      <div className="cart-dropdown__items d-flex flex-column" style={cartItemsLength > 2 ? undefined : {overflowY: "initial"}}>
-        {cartItems.length ? (
+      <div className="cart-dropdown__items d-flex flex-column">
+        {cartItemsLength ? (
           cartItems.map((cartItem) => (
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))

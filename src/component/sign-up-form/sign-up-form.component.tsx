@@ -7,6 +7,8 @@ import { signUpStart } from "../../store/user/user.action";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
+import "./sign-up-form.styles.scss";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -55,7 +57,7 @@ const SignUpForm = () => {
   };
   // from the begining to this point everything gets re-rendered but React is smart enought to deal with Dom or after this point.
   return (
-    <div className="sign-up d-flex flex-column col-5">
+    <div className="sign-up d-flex flex-column col-md2-5 col-sm-9 col-xs-12 mx-xs-9 mx-md2-0">
       <h2 className="my-3 mx-0">Don't have an account</h2>
       <span>Sign up with your email and password</span>
 
