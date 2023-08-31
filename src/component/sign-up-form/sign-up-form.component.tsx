@@ -53,7 +53,7 @@ const SignUpForm = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormFields({ ...formFields, [name]: value });
+    setFormFields((prevFormFields) => ({ ...prevFormFields, [name]: value }));
   };
   // from the begining to this point everything gets re-rendered but React is smart enought to deal with Dom or after this point.
   return (

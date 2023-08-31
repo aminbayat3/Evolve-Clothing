@@ -42,7 +42,7 @@ const navigate = useNavigate();
 
 **********************************************
 ** IMPORTANT POINT FOR PREVENTING UNNECESSARY RENDERS IN OUR APPLICATION
-  const categoriesMap = useSelector(selectCategoriesMap); // this useSelector will run every time the state object in root reducer has updated(whether it is currentUser or categories) and it only force the component to re-render if the return of the selector function you pass to it is different,
+  const categoriesMap = useSelector(selectCategoriesMap); // this useSelector will run every time the state object in root reducer has updated(whether it is currentUser or categories) and it only forces the component to re-render if the return of the selector function you pass to it is different,
  and given the fact that the selector always return a new object it will lead to unnecssary re-renders. 
  the solution is to make the selector function runs only when the categories changes. and this is viable via using a library called Reselect. 
 
@@ -390,7 +390,6 @@ if(existingCartItem && existingCartItem.quantity === 1){}
 
 2- using TypeScript:
 if(existingCartItem?.quantity === 1){} // actually this doesn't work because of the '== 1' part
-
 so if the 'if' statement was like below, it was valid:
 if(existingCartItem?.quantity){} // this is valid not the above code. for the above code we only need to use javascript
 ********************************************************
@@ -407,3 +406,40 @@ npm i sass sassloader
 *****************************************
 the difference between yield and yield* is that yield typically yields the Generator(javascript). yield* is similar but it hands them off to the redux saga library. so redux saga is going to behave the same way except redux saga can coordinate and identify what these effects are, what their return values are going to be
 because if you remember with a saga, a saga can have multiple yield steps. typically with a Generator it's very difficult to determine what the output of these Generators are because each yield is an output of the next call in the Generator
+
+****************************
+// Debouncing: 
+when you stop typing for 500ms then we want to check
+whether we run the useEffect or not.
+it is especially used for validity
+
+setTimeout(() => {
+  const identifier = setFormIsValid(enteredEmail.includes('@') && enteredPassword.trim().length > 6)
+
+  return () => {
+    clearTimeout(identifier);
+  };
+}, 500);
+
+in some senerio like above where we update one state based on another state
+and we also cannot use the function in setFormIsValid because the function gives us
+access to the last formIsValid state not enteredEmail state. in this case we'd better
+use useReducer otherwise in some rare cases we might run into problems
+
+
+** Form Validation
+** using useCallback if we want to pass a function to useEffect dependency array
+** Http request custom hook(useHttp)
+**look behind the scenes of React
+** Modal in section 12
+** React Portals
+** the concept of composition section 3 and section 9 adding a reusable Card component
+** we can use useRef for getting a value for an input but we should not 
+manipulating the dom. for example we should not do this: 
+NameInputRef.current.value = ''; // so we should not reset like this
+we can use the NameInputRef.current.value itself but we're not supposed to 
+manipulate it. However if we want to give the user feedback as he or she is typing
+in the inputs we need to use OnChange. which in this case we can also use the technique 
+above to make it more optimized(Debouncing)
+
+*** React Router Dom V6
